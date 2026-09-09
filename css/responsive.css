@@ -61,6 +61,15 @@
     .section { padding: 68px 0; }
     .section-tight { padding: 48px 0; }
 
+    .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+    .lightbox-prev, .lightbox-next {
+        width: 38px; height: 38px;
+    }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+    .lightbox-close { top: 14px; right: 14px; width: 38px; height: 38px; }
+
     .section-header {
         flex-direction: column;
         align-items: flex-start;

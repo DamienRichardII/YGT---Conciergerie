@@ -136,4 +136,81 @@
             }
         });
     }
+
+    /* ----------------------------------------------------------------------
+       5. Galerie photo — visionneuse (lightbox) vanilla JS, page Collections
+       ---------------------------------------------------------------------- */
+    var lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        var lightboxImg = document.getElementById('lightboxImg');
+        var lightboxCaption = document.getElementById('lightboxCaption');
+        var lightboxClose = lightbox.querySelector('.lightbox-close');
+        var lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        var lightboxNext = lightbox.querySelector('.lightbox-next');
+        var lastTrigger = null;
+        var currentGroup = [];
+        var currentIndex = 0;
+
+        function openLightbox(group, index) {
+            currentGroup = group;
+            currentIndex = index;
+            showCurrent();
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            body.classList.add('menu-open');
+            lightboxClose.focus();
+        }
+
+        function showCurrent() {
+            var item = currentGroup[currentIndex];
+            lightboxImg.src = item.href;
+            lightboxImg.alt = item.querySelector('img').alt || '';
+            lightboxCaption.textContent = item.dataset.category || '';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImg.src = '';
+            body.classList.remove('menu-open');
+            if (lastTrigger) lastTrigger.focus();
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % currentGroup.length;
+            showCurrent();
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+            showCurrent();
+        }
+
+        var galleryGroups = document.querySelectorAll('[data-photo-grid]');
+        galleryGroups.forEach(function (grid) {
+            var items = Array.prototype.slice.call(grid.querySelectorAll('.photo-item'));
+            items.forEach(function (item, idx) {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    lastTrigger = item;
+                    openLightbox(items, idx);
+                });
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNext);
+        lightboxPrev.addEventListener('click', showPrev);
+
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    }
 })();

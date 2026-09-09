@@ -1,0 +1,7 @@
+# YGT Conciergerie — robots.txt
+# ⚠ Remplacer le domaine ci-dessous par le domaine de production réel avant mise en ligne
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.ygtconciergerie-a-definir.fr/sitemap.xml

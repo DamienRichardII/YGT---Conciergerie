@@ -1,0 +1,134 @@
+/* ==========================================================================
+   YGT CONCIERGERIE — responsive.css
+   Media queries — Desktop / Tablet / Mobile
+   Testé sur : 320 / 375 / 390 / 430 / 768 / 1024 / 1440 / 1920
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Grand écran (>= 1920px) — confort de lecture, largeur de conteneur figée
+   -------------------------------------------------------------------------- */
+@media (min-width: 1920px) {
+    :root { --container-width: 1320px; }
+}
+
+/* --------------------------------------------------------------------------
+   Desktop standard (<= 1440px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1440px) {
+    :root { --container-padding: 28px; }
+}
+
+/* --------------------------------------------------------------------------
+   Tablette large / petit desktop (<= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .section { padding: 88px 0; }
+
+    .card-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+    .split { gap: 44px; }
+
+    .split-feature-list { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .steps-list { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px 32px; }
+
+    .form-grid { gap: 20px; }
+}
+
+/* --------------------------------------------------------------------------
+   Tablette / bascule menu mobile (<= 900px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .main-nav,
+    .header-socials { display: none; }
+
+    .menu-toggle { display: flex; }
+
+    :root { --header-height: var(--header-height-mobile); }
+
+    .site-header { height: var(--header-height-mobile); }
+    .site-header.is-scrolled { height: 64px; }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    :root { --container-padding: 22px; }
+
+    .section { padding: 68px 0; }
+    .section-tight { padding: 48px 0; }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .card-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .split,
+    .split-reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 32px;
+    }
+
+    .split-feature-list { grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+
+    .steps-list { grid-template-columns: 1fr; gap: 40px; }
+
+    .form-grid { grid-template-columns: 1fr; gap: 18px; }
+
+    .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 44px; }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .hero-ctas { flex-direction: column; width: 100%; max-width: 320px; }
+    .hero-ctas .btn { width: 100%; }
+
+    .page-hero { padding: calc(var(--header-height-mobile) + 56px) 0 56px; }
+
+    .quote-block blockquote { font-size: 22px; }
+}
+
+/* --------------------------------------------------------------------------
+   Petits mobiles (<= 430px) — 430 / 390 / 375
+   -------------------------------------------------------------------------- */
+@media (max-width: 430px) {
+    :root { --container-padding: 18px; }
+
+    .hero-logo { width: 118px; margin-bottom: 36px; }
+
+    .btn { padding: 15px 26px; font-size: 12px; }
+
+    .card-grid { grid-template-columns: 1fr; gap: 30px; }
+
+    .split-feature-list { grid-template-columns: 1fr; gap: 18px; }
+
+    .main-nav ul { gap: 26px; }
+
+    .mobile-menu-nav a { font-size: 26px; }
+
+    .footer-brand-logo { width: 84px; }
+}
+
+/* --------------------------------------------------------------------------
+   Très petits écrans (<= 320px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 320px) {
+    :root { --container-padding: 14px; }
+
+    .hero-logo { width: 104px; }
+
+    .section-title { font-size: 26px; }
+
+    .btn { padding: 14px 20px; }
+}
